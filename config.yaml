@@ -18,10 +18,12 @@ page_timeout_s: 45
 #                   (para webs cuyos resultados no son enlaces, p. ej. Carrefour).
 #   chollometro  -> lee los chollos activos (no caducados) de Chollometro.
 #
+# group: home -> la revisa el runner de tu PC (workflow ps5-stock-home.yml); sin group -> GitHub.
 # max_price por tienda sobrescribe el global. enabled: false la desactiva.
 
 stores:
   - id: eci
+    group: home   # bloquea a GitHub: se revisa desde tu PC
     name: El Corte Inglés
     mode: product
     discover:
@@ -32,6 +34,7 @@ stores:
       - https://www.elcorteingles.es/videojuegos/A200069098-consola-playstation-5-chasis-e-1tb/
 
   - id: mediamarkt
+    group: home   # bloquea a GitHub: se revisa desde tu PC
     name: MediaMarkt
     mode: product
     discover:
@@ -56,6 +59,7 @@ stores:
     link_pattern: 'xtralife\.com/producto/consola-ps5'
 
   - id: pccomponentes
+    group: home   # bloquea a GitHub: se revisa desde tu PC
     name: PcComponentes
     mode: product
     discover:
@@ -86,12 +90,14 @@ stores:
     # (el filtro de precio ya descarta a los revendedores de 1.000 €+)
 
   - id: carrefour
+    group: home   # bloquea a GitHub: se revisa desde tu PC
     name: Carrefour
     mode: cards
     url: https://www.carrefour.es/?query=consola%20playstation%205
     wait_s: 7
 
   - id: aliexpress
+    group: home   # bloquea a GitHub: se revisa desde tu PC
     name: AliExpress (envío desde España)
     mode: cards
     url: https://es.aliexpress.com/w/wholesale-consola-ps5.html?shipFromCountry=ES&sortType=price_asc&minPrice=250

@@ -399,7 +399,9 @@ async def check_cards_store(context, store: dict, cfg: dict, sem: asyncio.Semaph
 async def run_checks(cfg: dict, only: set[str] | None) -> list[StoreResult]:
     from playwright.async_api import async_playwright
 
-    stores = [s for s in cfg["stores"] if s.get("enabled", True) and (not only or s["id"] in only)]
+    group = os.environ.get("PS5_GROUP", "").strip()
+    stores = [s for s in cfg["stores"] if s.get("enabled", True) and (not only or s["id"] in only)
+              and (not group or s.get("group", "cloud") == group)]
     sem = asyncio.Semaphore(int(cfg.get("concurrency", 4)))
     async with async_playwright() as pw:
         launch_args = {
