@@ -36,7 +36,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
-          python -m playwright install chromium
 
       - name: Comprobar stock
         env:
@@ -45,6 +44,7 @@ jobs:
           PS5_GROUP: home
           PS5_STATE_PATH: state-home.json
           PYTHONIOENCODING: utf-8
+          PLAYWRIGHT_CHANNEL: chrome   # usa el Google Chrome instalado en tu PC
         run: |
           $only = "${{ inputs.only }}"
           if ($only) { python check_stock.py --only $only } else { python check_stock.py }
