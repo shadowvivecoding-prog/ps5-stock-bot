@@ -1,4 +1,4 @@
-name: Vigilar stock PS5
+name: Vigilar stock PS5 (GitHub)
 
 on:
   schedule:
@@ -58,6 +58,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TEST_NOTICE: ${{ inputs.test_aviso }}
+          PS5_GROUP: cloud
         run: python check_stock.py ${{ inputs.only && format('--only {0}', inputs.only) || '' }}
 
       - name: Guardar estado (para no repetir avisos)

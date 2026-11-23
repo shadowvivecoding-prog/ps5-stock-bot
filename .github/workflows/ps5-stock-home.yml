@@ -1,0 +1,62 @@
+name: Vigilar stock PS5 (mi PC)
+
+# Tiendas que bloquean a GitHub (group: home en config.yaml).
+# Se ejecuta en el runner instalado en tu PC con Windows, con tu conexión de casa.
+# Si el PC está apagado, la ejecución espera en cola; solo se guarda una pendiente.
+
+on:
+  schedule:
+    - cron: "12 6-20/2 * * *"
+    - cron: "9 22,23 * * *"
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Revisar solo estas tiendas (ids separados por comas, vacío = todas las de casa)"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ps5-stock-home
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: [self-hosted, Windows]
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m playwright install chromium
+
+      - name: Comprobar stock
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_MENTION: ${{ secrets.DISCORD_MENTION }}
+          PS5_GROUP: home
+          PS5_STATE_PATH: state-home.json
+          PYTHONIOENCODING: utf-8
+        run: |
+          $only = "${{ inputs.only }}"
+          if ($only) { python check_stock.py --only $only } else { python check_stock.py }
+
+      - name: Guardar estado (para no repetir avisos)
+        if: always()
+        run: |
+          if (git status --porcelain state-home.json) {
+            git config user.name "ps5-stock-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add state-home.json
+            git commit -m "Actualizar estado (PC) [skip ci]"
+            git pull --rebase --autostash
+            git push
+          }
