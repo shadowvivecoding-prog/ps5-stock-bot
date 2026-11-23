@@ -6,13 +6,12 @@
       "warned": false
     },
     "carrefour": {
-      "fails": 1,
+      "fails": 2,
       "last_error": "sin resultados en https://www.carrefour.es/?query=consola%20playstation%205",
       "warned": false
     },
     "eci": {
-      "fails": 1,
-      "last_error": "bloqueado en https://www.elcorteingles.es/videojuegos/ps5/consolas/; bloqueado: https://www.elcorteingles.es/videojuegos/A200069099-consola-playstation-5-digital/; bloqueado: https://www.elcorteingles",
+      "fails": 0,
       "warned": false
     },
     "mediamarkt": {
@@ -20,18 +19,66 @@
       "warned": false
     },
     "pccomponentes": {
-      "fails": 1,
+      "fails": 2,
       "last_error": "bloqueado: https://www.pccomponentes.com/sony-playstation-5-slim; bloqueado: https://www.pccomponentes.com/sony-playstation-5-slim-digital-chasis-e; bloqueado: https://www.pccomponentes.com/sony-plays",
       "warned": false
     }
   },
   "heartbeat": "2026-11-23",
   "items": {
+    "eci|https://www.elcorteingles.es/videojuegos/A200069098-consola-playstation-5-chasis-e-1tb/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795471148.6053863,
+      "price": 649.9,
+      "title": "Consola PlayStation 5, chasis E, 1TB"
+    },
+    "eci|https://www.elcorteingles.es/videojuegos/A200069099-consola-playstation-5-digital/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795471148.6053863,
+      "price": 599.9,
+      "title": "Consola PlayStation 5 Digital"
+    },
+    "eci|https://www.elcorteingles.es/videojuegos/A200225262-playstation-5-2-mandos-dualsense/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795471148.6053863,
+      "price": 699.9,
+      "title": "PlayStation 5 + 2 mandos DualSense"
+    },
+    "eci|https://www.elcorteingles.es/videojuegos/A200225263-playstation-5-digital-2-mandos-dualsense/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795471148.6053863,
+      "price": 649.9,
+      "title": "PlayStation 5 digital + 2 mandos DualSense"
+    },
+    "eci|https://www.elcorteingles.es/videojuegos/A203921340-pack-playstation-5-mando-inalambrico-ea-sports-fc27/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795471148.6053863,
+      "price": 749.9,
+      "title": "PACK PlayStation 5 + mando inalámbrico + EA Sports FC27"
+    },
+    "eci|https://www.elcorteingles.es/videojuegos/A203923143-pack-playstation-5-marvel-lobezno-ps5/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795471148.6053863,
+      "price": 704.8,
+      "title": "PACK PlayStation 5 + Marvel Lobezno PS5"
+    },
     "mediamarkt|https://www.mediamarkt.es/es/product/_consola-ps5-sony-playstation-5-chasis-e-1tb-128-mb-white-163866242.html": {
       "available": true,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795470919.80724,
+      "last_seen": 1795471148.6053863,
       "price": 1147.77,
       "title": "Consola PS5 - PLAYSTATION PlayStation 5 (Chasis E) 1TB, 1 TB, White"
     }
