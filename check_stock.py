@@ -455,7 +455,26 @@ def fmt_price(p: float | None) -> str:
 COLOR_OK, COLOR_WARN, COLOR_INFO = 0x2ECC71, 0xF39C12, 0x3498DB
 
 
-def _send_discord(webhook: str, n: dict) -> bool:
+def _discord_base(webhook: str) -> str:
+    return webhook.split("?")[0].rstrip("/")
+
+
+def _discord_call(method: str, url: str, **kw):
+    for _ in range(4):
+        r = requests.request(method, url, timeout=20, **kw)
+        if r.status_code == 429:  # límite de Discord: esperar lo que pide y reintentar
+            try:
+                wait = float(r.json().get("retry_after", 2))
+            except ValueError:
+                wait = 2
+            time.sleep(min(wait, 30))
+            continue
+        return r
+    return r
+
+
+def _send_discord(webhook: str, n: dict, edit_id: str | None = None) -> str:
+    """Publica (o edita, si edit_id) un mensaje. Devuelve el id del mensaje o "" si falla."""
     embed = {
         "title": n["title"][:256],
         "description": n.get("description", "")[:4000],
@@ -468,24 +487,49 @@ def _send_discord(webhook: str, n: dict) -> bool:
         embed["fields"] = [{"name": k[:256], "value": (v or "—")[:1024], "inline": True} for k, v in n["fields"]]
     if n.get("footer"):
         embed["footer"] = {"text": n["footer"][:2048]}
-    payload = {"username": "Vigilante PS5", "embeds": [embed]}
-    mention = os.environ.get("DISCORD_MENTION", "").strip()
-    if mention and n.get("ping", True):
-        payload["content"] = mention
-        payload["allowed_mentions"] = {"parse": ["everyone", "users", "roles"]}
-    for _ in range(3):
-        r = requests.post(webhook, json=payload, timeout=20)
-        if r.status_code == 429:  # límite de Discord: esperar lo que pide y reintentar
-            try:
-                wait = float(r.json().get("retry_after", 2))
-            except ValueError:
-                wait = 2
-            time.sleep(min(wait, 30))
-            continue
-        if not r.ok:
+    payload = {"embeds": [embed]}
+    if not edit_id:
+        payload["username"] = "Vigilante PS5"
+        mention = os.environ.get("DISCORD_MENTION", "").strip()
+        if mention and n.get("ping", True):
+            payload["content"] = mention
+            payload["allowed_mentions"] = {"parse": ["everyone", "users", "roles"]}
+    base = _discord_base(webhook)
+    if edit_id:
+        r = _discord_call("PATCH", f"{base}/messages/{edit_id}", json=payload)
+    else:
+        r = _discord_call("POST", f"{base}?wait=true", json=payload)
+    if not r.ok:
+        if r.status_code != 404:
             print(f"Error de Discord {r.status_code}: {r.text[:300]}", file=sys.stderr)
-        return r.ok
-    return False
+        return ""
+    try:
+        return str(r.json().get("id", "")) or "ok"
+    except ValueError:
+        return "ok"
+
+
+def delete_discord_message(msg_id: str, dry_run: bool = False) -> bool:
+    webhook = os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
+    if dry_run or not webhook or not msg_id or msg_id == "ok":
+        if dry_run:
+            print(f"---- (se borraría el mensaje {msg_id}) ----")
+        return False
+    r = _discord_call("DELETE", f"{_discord_base(webhook)}/messages/{msg_id}")
+    return r.ok or r.status_code == 404
+
+
+def upsert_discord_message(msg_id: str | None, n: dict, dry_run: bool = False) -> str:
+    """Edita el mensaje si existe; si no (o lo borraste), crea uno nuevo. Devuelve su id."""
+    webhook = os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
+    if dry_run or not webhook:
+        print(f"---- (mensaje de estado {'editado' if msg_id else 'nuevo'}) ----\n{n['title']}\n{n.get('description','')}")
+        return msg_id or ""
+    if msg_id and msg_id != "ok":
+        got = _send_discord(webhook, n, edit_id=msg_id)
+        if got:
+            return msg_id
+    return _send_discord(webhook, n)
 
 
 def _send_telegram(token: str, chat_id: str, n: dict) -> bool:
@@ -510,7 +554,8 @@ def _send_telegram(token: str, chat_id: str, n: dict) -> bool:
     return r.ok
 
 
-def send_notice(n: dict, dry_run: bool = False) -> bool:
+def send_notice(n: dict, dry_run: bool = False):
+    """Devuelve el id del mensaje de Discord (o True si se envió solo por Telegram); falso si falla."""
     """Envía el aviso a Discord (y a Telegram si también está configurado)."""
     webhook = os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
     tg_token = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
@@ -527,10 +572,10 @@ def send_notice(n: dict, dry_run: bool = False) -> bool:
         print("----------------------------")
         return dry_run
     ok = False
-    if webhook:
-        ok = _send_discord(webhook, n) or ok
     if tg_token and tg_chat:
         ok = _send_telegram(tg_token, tg_chat, n) or ok
+    if webhook:
+        ok = _send_discord(webhook, n) or ok
     return ok
 
 
@@ -626,10 +671,21 @@ def process(results: list[StoreResult], cfg: dict, state: dict, dry_run: bool) -
                     stale = realert_s > 0 and now - prev.get("last_alert", 0) >= realert_s
                 trigger = trigger or not was_hit or bool(cheaper) or stale
         # Un solo mensaje por tienda, solo si hay algo nuevo, más barato o toca recordatorio
-        if hits and trigger and send_notice(store_notice(r.store, hits, float(store_cfg.get("max_price", cfg["max_price"]))), dry_run):
-            for f in hits:
-                items[f.key]["last_alert"] = now
-            sent.extend(hits)
+        alert_msgs = state.setdefault("alert_msgs", {})
+        if hits and trigger:
+            # borra el aviso anterior de esta tienda y publica uno nuevo (para que vuelva a sonar)
+            if alert_msgs.get(r.store_id):
+                delete_discord_message(alert_msgs.pop(r.store_id), dry_run)
+            res_id = send_notice(store_notice(r.store, hits, float(store_cfg.get("max_price", cfg["max_price"]))), dry_run)
+            if res_id:
+                if isinstance(res_id, str):
+                    alert_msgs[r.store_id] = res_id
+                for f in hits:
+                    items[f.key]["last_alert"] = now
+                sent.extend(hits)
+        elif not hits and r.ok and alert_msgs.get(r.store_id):
+            # ya no queda stock en esa tienda: borramos su aviso para que el canal no engañe
+            delete_discord_message(alert_msgs.pop(r.store_id), dry_run)
 
     # olvida productos que no vemos desde hace 14 días
     for k in [k for k, v in items.items() if now - v.get("last_seen", 0) > 14 * 86400]:
@@ -637,6 +693,37 @@ def process(results: list[StoreResult], cfg: dict, state: dict, dry_run: bool) -
     # latido diario: mantiene el repo "activo" para que GitHub no desactive el cron
     state["heartbeat"] = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d")
     return sent, notes
+
+
+def status_notice(results: list[StoreResult], sent: list[Finding]) -> dict:
+    """Mensaje fijo que se edita en cada revisión: última comprobación y estado de cada tienda."""
+    group = os.environ.get("PS5_GROUP", "")
+    where = {"cloud": "GitHub", "home": "mi PC"}.get(group, "bot")
+    now = madrid_now()
+    lines = [f"🕒 **Última comprobación:** {now:%d/%m/%Y %H:%M}", ""]
+    for r in results:
+        hits = [f for f in r.findings if f.available and f.price is not None and f.price <= 600]
+        if not r.ok:
+            lines.append(f"❌ {r.store}: no se pudo leer")
+        elif hits:
+            lines.append(f"🟢 {r.store}: ¡{len(hits)} con stock!")
+        else:
+            lines.append(f"✅ {r.store}: {r.checked} revisadas, sin stock")
+    all_bad = all(not r.ok for r in results) if results else True
+    return {
+        "title": f"{'🔴' if all_bad else '🟢'} Vigilante PS5 ({where}) funcionando",
+        "description": "\n".join(lines),
+        "color": COLOR_WARN if all_bad else COLOR_INFO,
+        "ping": False,
+    }
+
+
+def madrid_now() -> dt.datetime:
+    try:
+        from zoneinfo import ZoneInfo
+        return dt.datetime.now(ZoneInfo("Europe/Madrid"))
+    except Exception:  # noqa: BLE001  (Windows sin tzdata)
+        return dt.datetime.now(TZ)
 
 
 def write_summary(results: list[StoreResult], sent: list[Finding], cfg: dict):
@@ -688,6 +775,7 @@ def main():
     results = asyncio.run(run_checks(cfg, only))
     state = load_state()
     sent, _ = process(results, cfg, state, args.dry_run)
+    state["status_msg"] = upsert_discord_message(state.get("status_msg"), status_notice(results, sent), args.dry_run) or state.get("status_msg")
     save_state(state)
     write_summary(results, sent, cfg)
     print(f"Avisos enviados: {len(sent)}")
