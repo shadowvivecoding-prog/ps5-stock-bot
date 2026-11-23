@@ -94,7 +94,7 @@ stores:
     name: Carrefour
     mode: cards
     url: https://www.carrefour.es/?query=consola%20playstation%205
-    wait_s: 7
+    wait_s: 12
 
   - id: aliexpress
     group: home   # bloquea a GitHub: se revisa desde tu PC

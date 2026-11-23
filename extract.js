@@ -31,8 +31,9 @@
   const absTop = (e) => e.getBoundingClientRect().top + window.scrollY;
 
   const bodyText = clean(document.body ? document.body.innerText : '').slice(0, 4000);
-  const blocked = /captcha|no eres un robot|not a robot|are you a human|access denied|acceso denegado|attention required|just a moment|introduce los caracteres|request unsuccessful|verifica que eres|slide right to secure|unusual traffic|pardon our interruption|un momento|verificando|checking your browser|cf-browser-verification|security check|comprobación de seguridad/i
-    .test(document.title + ' ' + bodyText.slice(0, 1500));
+  const blocked = /captcha|no eres un robot|not a robot|are you a human|access denied|acceso denegado|attention required|just a moment|introduce los caracteres|request unsuccessful|verifica que eres|slide right to secure|unusual traffic|pardon our interruption|checking your browser|cf-browser-verification/i
+    .test(document.title + ' ' + bodyText.slice(0, 1500)) ||
+    /un momento|verificando|security check|comprobación de seguridad/i.test(document.title);
 
   // ------------------------------------------------------------------ CARDS
   if (mode === 'cards') {
