@@ -370,6 +370,9 @@ async def check_cards_store(context, store: dict, cfg: dict, sem: asyncio.Semaph
                 continue
             link = c.get("href") or url
             if is_chollo:
+                # solo chollos reales (enlace /ofertas/), no las fichas comparadoras "X ofertas desde..."
+                if "/ofertas/" not in (c.get("href") or ""):
+                    continue
                 expired = re.search(r"Termin[oó]|expir[oó]|caducad|Expirado", text, re.I)
                 if CONTRACT_RE.search(text):
                     continue
@@ -529,7 +532,7 @@ def send_notice(n: dict, dry_run: bool = False) -> bool:
     return ok
 
 
-def store_notice(store: str, hits: list[Finding]) -> dict:
+def store_notice(store: str, hits: list[Finding], max_price: float = 600) -> dict:
     """Un único mensaje por tienda con todos los modelos disponibles: modelo, precio y enlace."""
     hits = sorted(hits, key=lambda f: f.price or 9e9)[:15]
     lines = []
@@ -537,6 +540,8 @@ def store_notice(store: str, hits: list[Finding]) -> dict:
         line = f"**{f.title[:110]}**\n💶 **{fmt_price(f.price)}**"
         if f.seller and f.seller.lower() not in store.lower():
             line += f" · vendido por {f.seller[:40]}"
+        if f.price is not None and f.price > max_price:
+            line += " ⚠️ por encima de tu límite"
         line += f" · [Comprar]({f.url})"
         lines.append(line)
     notes = {f.note for f in hits if f.note}
@@ -597,9 +602,11 @@ def process(results: list[StoreResult], cfg: dict, state: dict, dry_run: bool) -
 
         hits: list[Finding] = []
         trigger = False
+        store_cfg = next((s for s in cfg["stores"] if s["id"] == r.store_id), {})
+        watch_all = bool(store_cfg.get("watch_all"))
         for f in r.findings:
-            max_price = float(next((s.get("max_price", cfg["max_price"]) for s in cfg["stores"] if s["id"] == f.store_id), cfg["max_price"]))
-            ok_price = f.price is not None and f.price <= max_price
+            max_price = float(store_cfg.get("max_price", cfg["max_price"]))
+            ok_price = f.price is not None and (f.price <= max_price or watch_all)
             hit = f.available and ok_price
             prev = items.get(f.key, {})
             items[f.key] = {
@@ -609,11 +616,15 @@ def process(results: list[StoreResult], cfg: dict, state: dict, dry_run: bool) -
             if hit and f.key not in {h.key for h in hits}:
                 hits.append(f)
                 was_hit = prev.get("hit", False)
-                cheaper = prev.get("price") and f.price is not None and f.price < prev["price"] - 4.99
-                stale = realert_s > 0 and now - prev.get("last_alert", 0) >= realert_s
+                if watch_all:  # tiendas vigiladas a cualquier precio: avisa si cambia el precio, sin recordatorios
+                    cheaper = prev.get("price") is not None and f.price is not None and abs(f.price - prev["price"]) >= 1
+                    stale = False
+                else:
+                    cheaper = prev.get("price") and f.price is not None and f.price < prev["price"] - 4.99
+                    stale = realert_s > 0 and now - prev.get("last_alert", 0) >= realert_s
                 trigger = trigger or not was_hit or bool(cheaper) or stale
         # Un solo mensaje por tienda, solo si hay algo nuevo, más barato o toca recordatorio
-        if hits and trigger and send_notice(store_notice(r.store, hits), dry_run):
+        if hits and trigger and send_notice(store_notice(r.store, hits, float(store_cfg.get("max_price", cfg["max_price"]))), dry_run):
             for f in hits:
                 items[f.key]["last_alert"] = now
             sent.extend(hits)

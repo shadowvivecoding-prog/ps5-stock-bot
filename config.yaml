@@ -61,6 +61,13 @@ stores:
     discover:
       - https://www.pccomponentes.com/categorias/videoconsolas-ps5
     link_pattern: '^https://www\.pccomponentes\.com/sony-playstation-5[a-z0-9-]*$'
+    watch_all: true   # avisa de las PS5 disponibles aunque pasen de max_price, cuando cambia su precio
+    products:
+      - https://www.pccomponentes.com/sony-playstation-5-slim
+      - https://www.pccomponentes.com/sony-playstation-5-slim-digital-chasis-e
+      - https://www.pccomponentes.com/sony-playstation-5-slim-digital-chasis-e-plus-samsung-990-pro-1-tb-ssd-pcie-4-0-nvme-disipador-termico
+      - https://www.pccomponentes.com/sony-playstation-5-slim-digital-chasis-e-plus-samsung-990-pro-1-tb-ssd-plus-grand-theft-auto-vi-standard-ed-gta-vi-ciab
+      - https://www.pccomponentes.com/sony-playstation-5-pro
 
   - id: amazon
     name: Amazon.es
