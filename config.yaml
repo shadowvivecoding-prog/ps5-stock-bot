@@ -1,0 +1,110 @@
+# Configuración del vigilante de stock de PS5
+# ------------------------------------------------------------
+# Avisa por Telegram cuando una PS5 NUEVA (no seminueva/reacondicionada)
+# está disponible para comprar con envío en España por <= max_price.
+
+max_price: 600          # € — avisa si el precio es igual o menor
+min_price: 250          # € — por debajo es casi seguro un accesorio o un error, se ignora
+realert_hours: 12       # si sigue disponible, vuelve a recordártelo cada X horas (0 = nunca)
+health_alert_after: 8   # avisa (una vez) si una tienda falla X ejecuciones seguidas
+max_products_per_store: 20
+page_timeout_s: 45
+
+# Tipos de tienda (mode):
+#   product      -> descubre fichas de producto desde las páginas de "discover"
+#                   (enlaces que cumplan link_pattern) y abre cada ficha para leer
+#                   precio y disponibilidad (JSON-LD schema.org, botón de compra...).
+#   cards        -> lee directamente las tarjetas de una página de resultados
+#                   (para webs cuyos resultados no son enlaces, p. ej. Carrefour).
+#   chollometro  -> lee los chollos activos (no caducados) de Chollometro.
+#
+# max_price por tienda sobrescribe el global. enabled: false la desactiva.
+
+stores:
+  - id: eci
+    name: El Corte Inglés
+    mode: product
+    discover:
+      - https://www.elcorteingles.es/videojuegos/ps5/consolas/
+    link_pattern: 'elcorteingles\.es/videojuegos/A\d+-'
+    products:
+      - https://www.elcorteingles.es/videojuegos/A200069099-consola-playstation-5-digital/
+      - https://www.elcorteingles.es/videojuegos/A200069098-consola-playstation-5-chasis-e-1tb/
+
+  - id: mediamarkt
+    name: MediaMarkt
+    mode: product
+    discover:
+      - https://www.mediamarkt.es/es/search.html?query=consola%20ps5
+    link_pattern: 'mediamarkt\.es/es/product/_'
+    products:
+      - https://www.mediamarkt.es/es/product/_consola-sony-ps5-slim-digital-edition-825-gb-ssd-4k-1-mando-chasis-e-blanco-pack-fortnite-flowering-chaos-codigo-de-descarga-1608846.html
+
+  - id: game
+    name: GAME
+    mode: product
+    discover:
+      - https://www.game.es/resultados?search=consola%20PS5
+    link_pattern: '^https://www\.game\.es/[a-z0-9-]+/\d{5,7}$'
+
+  - id: xtralife
+    name: Xtralife
+    mode: product
+    discover:
+      - https://www.xtralife.com/seleccion/consolas-ps5-estandar/7867
+      - https://www.xtralife.com/buscar/consola%20ps5
+    link_pattern: 'xtralife\.com/producto/consola-ps5'
+
+  - id: pccomponentes
+    name: PcComponentes
+    mode: product
+    discover:
+      - https://www.pccomponentes.com/categorias/videoconsolas-ps5
+    link_pattern: '^https://www\.pccomponentes\.com/sony-playstation-5[a-z0-9-]*$'
+
+  - id: amazon
+    name: Amazon.es
+    mode: product
+    discover:
+      - https://www.amazon.es/s?k=consola+playstation+5&i=videogames
+    link_pattern: 'amazon\.es/.*?/?dp/[A-Z0-9]{10}'
+    products:   # fichas principales de PS5 en Amazon.es (vendidas por Amazon cuando hay stock)
+      - https://www.amazon.es/dp/B0FP2S1MNB   # PS5 estándar Chassis E
+      - https://www.amazon.es/dp/B0CLTBHXWQ   # PS5 Digital Slim
+      - https://www.amazon.es/dp/B0CLT54ZNZ   # PS5 estándar Slim
+      - https://www.amazon.es/dp/B0DXL6Z2X1   # pack Astro Bot
+      - https://www.amazon.es/dp/B08KKJ37F7   # PS5 estándar
+      - https://www.amazon.es/dp/B08KJF2D25   # PS5 Digital
+    # Amazon solo cuenta si lo vende Amazon o un vendedor con envío a España
+    # (el filtro de precio ya descarta a los revendedores de 1.000 €+)
+
+  - id: carrefour
+    name: Carrefour
+    mode: cards
+    url: https://www.carrefour.es/?query=consola%20playstation%205
+    wait_s: 7
+
+  - id: aliexpress
+    name: AliExpress (envío desde España)
+    mode: cards
+    url: https://es.aliexpress.com/w/wholesale-consola-ps5.html?shipFromCountry=ES&sortType=price_asc&minPrice=250
+    card_selector: 'a[href*="/item/"]'
+    wait_s: 7
+    note: 'Precio sin cupones; con cupón puede bajar más. Comprueba que el vendedor sea la tienda oficial o una tienda conocida.'
+
+  - id: chollometro
+    name: Chollometro
+    mode: chollometro
+    urls:
+      - https://www.chollometro.com/categorias/ps5?sortBy=new
+      - https://www.chollometro.com/search?q=consola%20ps5&sortBy=new
+    note: 'Chollo publicado por la comunidad: abre el enlace y confirma la tienda.'
+
+  # Fnac usa un captcha anti-bots (DataDome) que bloquea a GitHub Actions casi siempre.
+  - id: fnac
+    name: Fnac
+    enabled: false
+    mode: product
+    discover:
+      - https://www.fnac.es/SearchResult/ResultList.aspx?Search=consola+ps5
+    link_pattern: 'fnac\.es/a\d+/'

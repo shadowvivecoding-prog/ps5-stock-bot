@@ -1,0 +1,28 @@
+max_price: 600
+min_price: 250
+realert_hours: 12
+health_alert_after: 2
+max_products_per_store: 14
+page_timeout_s: 20
+stores:
+  - id: fake
+    name: Tienda Falsa
+    mode: product
+    discover: [http://127.0.0.1:8765/listing.html]
+    link_pattern: '127\.0\.0\.1:8765/p\d\.html'
+    wait_s: 0.3
+  - id: fakecards
+    name: Carrefour Falso
+    mode: cards
+    url: http://127.0.0.1:8765/cards.html
+    wait_s: 0.3
+  - id: fakechollo
+    name: Chollometro Falso
+    mode: chollometro
+    urls: [http://127.0.0.1:8765/chollo.html]
+    wait_s: 0.3
+  - id: broken
+    name: Tienda Caída
+    mode: product
+    discover: [http://127.0.0.1:9/nada.html]
+    link_pattern: 'x'
