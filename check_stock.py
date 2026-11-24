@@ -784,7 +784,8 @@ def main():
     results = asyncio.run(run_checks(cfg, only))
     state = load_state()
     sent, _ = process(results, cfg, state, args.dry_run)
-    state["status_msg"] = upsert_discord_message(state.get("status_msg"), status_notice(results, sent), args.dry_run) or state.get("status_msg")
+    if not only:  # las pruebas con --only no tocan el mensaje de estado
+      state["status_msg"] = upsert_discord_message(state.get("status_msg"), status_notice(results, sent), args.dry_run) or state.get("status_msg")
     save_state(state)
     write_summary(results, sent, cfg)
     print(f"Avisos enviados: {len(sent)}")
