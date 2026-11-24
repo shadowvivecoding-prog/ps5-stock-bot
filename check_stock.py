@@ -380,7 +380,7 @@ async def check_cards_store(context, store: dict, cfg: dict, sem: asyncio.Semaph
                 reason = "chollo activo" if available else "chollo caducado"
                 seller = c.get("store") or ""
             else:
-                out = re.search(r"agotad|no disponible|sin stock|próximamente", text, re.I)
+                out = re.search(r"agotad|no disponible|sin stock|próximamente|avísame", text, re.I)
                 available = not out
                 reason = "aparece en el listado" if available else "listado: agotado"
                 seller = c.get("seller") or ""
