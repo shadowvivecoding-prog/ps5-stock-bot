@@ -57,6 +57,21 @@ stores:
       - https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/fortnite-flowering-chaos-bundle/
     wait_s: 5
 
+  - id: sony_pc
+    group: home   # copia desde tu PC por si Sony bloquea a GitHub
+    name: PlayStation (Sony, desde mi PC)
+    mode: product
+    ignore_ld: true   # su schema.org dice InStock aunque ponga "No disponible para comprar"
+    discover:
+      - https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/digital-edition-825-gb-two-dualsense-bundle/
+    link_pattern: 'playstation\.com/es-es/ps5/.+/product/'
+    products:
+      - https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/digital-edition-825-gb-two-dualsense-bundle/
+      - https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/marvels-wolverine-battle-yellow-limited-edition-bundle/
+      - https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/ea-sports-fc-26-bundle/
+      - https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/fortnite-flowering-chaos-bundle/
+    wait_s: 5
+
   - id: game
     name: GAME
     mode: product
