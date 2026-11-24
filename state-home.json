@@ -6,7 +6,7 @@
       "warned": false
     },
     "carrefour": {
-      "fails": 4,
+      "fails": 5,
       "last_error": "sin resultados en https://www.carrefour.es/?query=consola%20playstation%205",
       "warned": false
     },
@@ -19,18 +19,17 @@
       "warned": false
     },
     "pccomponentes": {
-      "fails": 4,
-      "last_error": "bloqueado: https://www.pccomponentes.com/sony-playstation-5-slim; bloqueado: https://www.pccomponentes.com/sony-playstation-5-slim-digital-chasis-e; bloqueado: https://www.pccomponentes.com/sony-plays",
+      "fails": 0,
       "warned": false
     }
   },
-  "heartbeat": "2026-11-23",
+  "heartbeat": "2026-11-24",
   "items": {
     "eci|https://www.elcorteingles.es/videojuegos/A200069098-consola-playstation-5-chasis-e-1tb/": {
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795478139.3098445,
+      "last_seen": 1795485757.3425047,
       "price": 649.9,
       "title": "Consola PlayStation 5, chasis E, 1TB"
     },
@@ -38,7 +37,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795478139.3098445,
+      "last_seen": 1795485757.3425047,
       "price": 599.9,
       "title": "Consola PlayStation 5 Digital"
     },
@@ -46,7 +45,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795478139.3098445,
+      "last_seen": 1795485757.3425047,
       "price": 699.9,
       "title": "PlayStation 5 + 2 mandos DualSense"
     },
@@ -54,7 +53,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795478139.3098445,
+      "last_seen": 1795485757.3425047,
       "price": 649.9,
       "title": "PlayStation 5 digital + 2 mandos DualSense"
     },
@@ -62,7 +61,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795478139.3098445,
+      "last_seen": 1795485757.3425047,
       "price": 749.9,
       "title": "PACK PlayStation 5 + mando inalámbrico + EA Sports FC27"
     },
@@ -70,7 +69,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795478139.3098445,
+      "last_seen": 1795485757.3425047,
       "price": 704.8,
       "title": "PACK PlayStation 5 + Marvel Lobezno PS5"
     },
@@ -78,7 +77,7 @@
       "available": true,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795478139.3098445,
+      "last_seen": 1795485757.3425047,
       "price": 1535.19,
       "title": "Consola PS5 - PLAYSTATION PlayStation 5 (Chasis E) 1TB, 1 TB, White"
     }
