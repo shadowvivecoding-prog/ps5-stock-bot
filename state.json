@@ -38,6 +38,10 @@
       "last_error": "bloqueado en https://www.pccomponentes.com/categorias/videoconsolas-ps5; bloqueado: https://www.pccomponentes.com/sony-playstation-5-slim; bloqueado: https://www.pccomponentes.com/sony-playstation-5-s",
       "warned": false
     },
+    "sony": {
+      "fails": 0,
+      "warned": false
+    },
     "xtralife": {
       "fails": 0,
       "warned": false
@@ -508,6 +512,38 @@
       "last_seen": 1795446613.9674115,
       "price": 999.99,
       "title": "PlayStation 5 Modelo Pro Chassis D AON + Marvel: Lobezno + Marvel´s Spider-Man 2"
+    },
+    "sony|https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/digital-edition-825-gb-two-dualsense-bundle/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795486010.0908015,
+      "price": 649.99,
+      "title": "Edición Digital PlayStation®5 825 GB - Pack de dos mandos inalámbricos DualSense®"
+    },
+    "sony|https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/ea-sports-fc-26-bundle/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795486010.0908015,
+      "price": 499.99,
+      "title": "Pack de Consola PlayStation®5 Edición Digital de 825 GB - EA SPORTS FC™ 26"
+    },
+    "sony|https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/fortnite-flowering-chaos-bundle/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795486010.0908015,
+      "price": 349.99,
+      "title": "Pack de Consola PlayStation®5 Edición Digital de 825 GB - Fortnite Flowering Chaos"
+    },
+    "sony|https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/marvels-wolverine-battle-yellow-limited-edition-bundle/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795486010.0908015,
+      "price": 649.99,
+      "title": "Consola PlayStation®5 Edición Digital 825 GB: paquete de edición limitada Amarillo de Combate de Marvel: Lobezno"
     },
     "xtralife|https://www.xtralife.com/producto/consola-ps5-chassis-e-digital-auriculares-atlas-200-blancos-base-de-carga-ps5-deluxe-ps5-pack/114257": {
       "available": false,
