@@ -410,7 +410,7 @@ async def run_checks(cfg: dict, only: set[str] | None) -> list[StoreResult]:
 
     group = os.environ.get("PS5_GROUP", "").strip()
     stores = [s for s in cfg["stores"] if s.get("enabled", True) and (not only or s["id"] in only)
-              and (not group or s.get("group", "cloud") == group)]
+              and (only or not group or s.get("group", "cloud") == group)]  # con --only se ignora el grupo (pruebas)
     sem = asyncio.Semaphore(int(cfg.get("concurrency", 4)))
     async with async_playwright() as pw:
         launch_args = {
