@@ -55,7 +55,7 @@ NOT_CONSOLE_RE = re.compile(
 # Ofertas ligadas a contratos (p. ej. operadoras con permanencia): no son una compra normal
 CONTRACT_RE = re.compile(r"permanencia|€\s*/\s*mes|/mes\b|clientes de|solo para clientes", re.I)
 CONSOLE_START_RE = re.compile(
-    r"^\W*(?:nuev[oa]\s+)?(?:pack\s+)?(?:consola|console|videoconsola|"
+    r"^\W*(?:nuev[oa]\s+)?(?:pack\s+(?:de\s+)?)?(?:consola|console|videoconsola|edici[oó]n digital (?:de )?playstation\s*5|"
     r"(?:sony\s+)?playstation\s*5|(?:sony\s+)?ps5|playstation\s+consola)\b",
     re.I,
 )
@@ -78,9 +78,13 @@ AVAILABLE_LD = {"instock", "limitedavailability", "onlineonly", "instoreonly", "
 UNAVAILABLE_LD = {"outofstock", "soldout", "discontinued"}
 
 
+def _norm(t: str) -> str:
+    return " ".join((t or "").replace("®", "").replace("™", "").split())
+
+
 def is_new_console(title: str) -> bool:
     """¿El título describe una consola PS5 (sola o en pack) nueva?"""
-    t = " ".join((title or "").split())
+    t = _norm(title)
     if not t or not MENTIONS_PS5_RE.search(t):
         return False
     if USED_RE.search(t) or NOT_CONSOLE_RE.search(t):
@@ -89,7 +93,7 @@ def is_new_console(title: str) -> bool:
         return False
     if ACCESSORY_AFTER_RE.search(t):
         return False
-    if not re.match(r"^\W*(?:nuev[oa]\s+)?(?:pack\b|consola|console|videoconsola)", t, re.I):
+    if not re.match(r"^\W*(?:nuev[oa]\s+)?(?:pack\b|consola|console|videoconsola|edici[oó]n digital)", t, re.I):
         # Empieza por "PS5"/"PlayStation 5": puede ser un juego ("PlayStation 5-MARVEL: Lobezno")
         if GAME_EDITION_RE.search(t) or not HARDWARE_HINT_RE.search(t):
             return False
@@ -105,7 +109,7 @@ LISTING_HINT_RE = re.compile(
 
 def looks_like_console_listing(text: str) -> bool:
     """Filtro suave para enlaces de listados (el texto puede empezar por 'Agotado', '-7%', etc.)."""
-    t = " ".join((text or "").split())[:200]
+    t = _norm(text)[:200]
     if not MENTIONS_PS5_RE.search(t) or USED_RE.search(t) or NOT_CONSOLE_RE.search(t):
         return False
     return bool(LISTING_HINT_RE.search(t))
@@ -174,9 +178,14 @@ class StoreResult:
     checked: int = 0
 
 
-def decide_product(data: dict, max_price: float, min_price: float) -> tuple[bool, float | None, str, str]:
-    """Devuelve (disponible, precio, motivo, vendedor) a partir de lo extraído de una ficha."""
-    ld = data.get("ld") or {}
+def decide_product(data: dict, max_price: float, min_price: float, ignore_ld: bool = False) -> tuple[bool, float | None, str, str]:
+    """Devuelve (disponible, precio, motivo, vendedor) a partir de lo extraído de una ficha.
+    ignore_ld: la tienda publica una disponibilidad falsa en schema.org (p. ej. Sony) -> se usa lo visible."""
+    ld = dict(data.get("ld") or {})
+    if ignore_ld and ld.get("price"):
+        data = {**data, "mainPrice": None}  # en Sony los precios de otros modelos confunden
+    if ignore_ld:
+        ld["availability"] = ""
     amazon = data.get("amazon")
     seller = ""
 
@@ -308,7 +317,7 @@ async def check_product_store(context, store: dict, cfg: dict, sem: asyncio.Sema
         if data.get("usedBadge"):
             res.findings.append(Finding(res.store_id, res.store, title, url, None, False, "es seminueva/reacondicionada"))
             return
-        available, price, reason, seller = decide_product(data, max_price, min_price)
+        available, price, reason, seller = decide_product(data, max_price, min_price, bool(store.get("ignore_ld")))
         res.findings.append(Finding(res.store_id, res.store, title, url, price, available, reason, seller, store.get("note", "")))
 
     await asyncio.gather(*(check_one(u) for u in list(urls)[:limit]))

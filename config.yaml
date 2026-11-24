@@ -43,6 +43,20 @@ stores:
     products:
       - https://www.mediamarkt.es/es/product/_consola-sony-ps5-slim-digital-edition-825-gb-ssd-4k-1-mando-chasis-e-blanco-pack-fortnite-flowering-chaos-codigo-de-descarga-1608846.html
 
+  - id: sony
+    name: PlayStation (tienda oficial de Sony)
+    mode: product
+    ignore_ld: true   # su schema.org dice InStock aunque ponga "No disponible para comprar"
+    discover:
+      - https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/digital-edition-825-gb-two-dualsense-bundle/
+    link_pattern: 'playstation\.com/es-es/ps5/.+/product/'
+    products:
+      - https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/digital-edition-825-gb-two-dualsense-bundle/
+      - https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/marvels-wolverine-battle-yellow-limited-edition-bundle/
+      - https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/ea-sports-fc-26-bundle/
+      - https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/fortnite-flowering-chaos-bundle/
+    wait_s: 5
+
   - id: game
     name: GAME
     mode: product
