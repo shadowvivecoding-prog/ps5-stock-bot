@@ -2,7 +2,7 @@
   "alert_msgs": {},
   "health": {
     "aliexpress": {
-      "fails": 2,
+      "fails": 3,
       "last_error": "sin resultados en https://es.aliexpress.com/w/wholesale-consola-ps5.html?shipFromCountry=ES&sortType=price_asc&minPrice=250",
       "warned": false
     },
@@ -11,7 +11,7 @@
       "warned": false
     },
     "carrefour": {
-      "fails": 2,
+      "fails": 3,
       "last_error": "bloqueado: https://www.carrefour.es/?query=consola%20playstation%205",
       "warned": false
     },
@@ -20,7 +20,7 @@
       "warned": false
     },
     "eci": {
-      "fails": 2,
+      "fails": 3,
       "last_error": "bloqueado en https://www.elcorteingles.es/videojuegos/ps5/consolas/; bloqueado: https://www.elcorteingles.es/videojuegos/A200069099-consola-playstation-5-digital/; bloqueado: https://www.elcorteingles",
       "warned": false
     },
@@ -29,13 +29,13 @@
       "warned": false
     },
     "mediamarkt": {
-      "fails": 2,
+      "fails": 3,
       "last_error": "bloqueado en https://www.mediamarkt.es/es/search.html?query=consola%20ps5; bloqueado: https://www.mediamarkt.es/es/product/_consola-sony-ps5-slim-digital-edition-825-gb-ssd-4k-1-mando-chasis-e-blanco-",
       "warned": false
     },
     "pccomponentes": {
-      "fails": 2,
-      "last_error": "bloqueado en https://www.pccomponentes.com/categorias/videoconsolas-ps5; bloqueado: https://www.pccomponentes.com/sony-playstation-5-slim; bloqueado: https://www.pccomponentes.com/sony-playstation-5-s",
+      "fails": 3,
+      "last_error": "bloqueado: https://www.pccomponentes.com/search/?query=sony+playstation+5+consola",
       "warned": false
     },
     "sony": {
