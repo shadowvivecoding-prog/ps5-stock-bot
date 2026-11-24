@@ -1,12 +1,14 @@
 {
-  "alert_msgs": {},
+  "alert_msgs": {
+    "pccomponentes": "1574771211999645871"
+  },
   "health": {
     "aliexpress": {
       "fails": 0,
       "warned": false
     },
     "carrefour": {
-      "fails": 6,
+      "fails": 7,
       "last_error": "sin resultados en https://www.carrefour.es/?query=consola%20playstation%205",
       "warned": false
     },
@@ -33,7 +35,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795486948.8396838,
+      "last_seen": 1795525116.6069822,
       "price": 649.9,
       "title": "Consola PlayStation 5, chasis E, 1TB"
     },
@@ -41,7 +43,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795486948.8396838,
+      "last_seen": 1795525116.6069822,
       "price": 599.9,
       "title": "Consola PlayStation 5 Digital"
     },
@@ -49,7 +51,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795486948.8396838,
+      "last_seen": 1795525116.6069822,
       "price": 699.9,
       "title": "PlayStation 5 + 2 mandos DualSense"
     },
@@ -57,7 +59,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795486948.8396838,
+      "last_seen": 1795525116.6069822,
       "price": 649.9,
       "title": "PlayStation 5 digital + 2 mandos DualSense"
     },
@@ -65,7 +67,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795486948.8396838,
+      "last_seen": 1795525116.6069822,
       "price": 749.9,
       "title": "PACK PlayStation 5 + mando inalámbrico + EA Sports FC27"
     },
@@ -81,15 +83,23 @@
       "available": true,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795486948.8396838,
-      "price": 1535.19,
+      "last_seen": 1795525116.6069822,
+      "price": 1717.34,
       "title": "Consola PS5 - PLAYSTATION PlayStation 5 (Chasis E) 1TB, 1 TB, White"
+    },
+    "pccomponentes|https://www.pccomponentes.com/sony-playstation-5-slim-chasis-e-plus-lobezno-plus-spider-man-2-plus-grand-theft-auto-vi-gta-vi-plus-sony-pulse": {
+      "available": true,
+      "hit": true,
+      "last_alert": 1795525116.6069822,
+      "last_seen": 1795525116.6069822,
+      "price": 929.99,
+      "title": "Sony PlayStation 5 Slim Chasis E + Lobezno + Spider-Man 2 + GRAND THEFT AUTO VI (GTA VI) + Sony PULSE"
     },
     "sony_pc|https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/digital-edition-825-gb-two-dualsense-bundle/": {
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795486948.8396838,
+      "last_seen": 1795525116.6069822,
       "price": 649.99,
       "title": "Edición Digital PlayStation®5 825 GB - Pack de dos mandos inalámbricos DualSense®"
     },
@@ -113,7 +123,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795486948.8396838,
+      "last_seen": 1795525116.6069822,
       "price": 649.99,
       "title": "Consola PlayStation®5 Edición Digital 825 GB: paquete de edición limitada Amarillo de Combate de Marvel: Lobezno"
     }
