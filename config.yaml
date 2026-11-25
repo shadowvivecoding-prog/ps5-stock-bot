@@ -3,7 +3,7 @@
 # Avisa por Telegram cuando una PS5 NUEVA (no seminueva/reacondicionada)
 # está disponible para comprar con envío en España por <= max_price.
 
-max_price: 600          # € — avisa si el precio es igual o menor
+max_price: 700          # € — avisa si el precio es igual o menor
 min_price: 250          # € — por debajo es casi seguro un accesorio o un error, se ignora
 realert_hours: 12       # si sigue disponible, vuelve a recordártelo cada X horas (0 = nunca)
 health_alert_after: 8   # avisa (una vez) si una tienda falla X ejecuciones seguidas

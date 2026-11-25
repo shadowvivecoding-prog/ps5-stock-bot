@@ -591,7 +591,7 @@ def send_notice(n: dict, dry_run: bool = False):
     return ok
 
 
-def store_notice(store: str, hits: list[Finding], max_price: float = 600) -> dict:
+def store_notice(store: str, hits: list[Finding], max_price: float = 700) -> dict:
     """Un único mensaje por tienda con todos los modelos disponibles: modelo, precio y enlace."""
     hits = sorted(hits, key=lambda f: f.price or 9e9)[:15]
     lines = []
@@ -707,14 +707,14 @@ def process(results: list[StoreResult], cfg: dict, state: dict, dry_run: bool) -
     return sent, notes
 
 
-def status_notice(results: list[StoreResult], sent: list[Finding]) -> dict:
+def status_notice(results: list[StoreResult], sent: list[Finding], max_price: float = 700) -> dict:
     """Mensaje fijo que se edita en cada revisión: última comprobación y estado de cada tienda."""
     group = os.environ.get("PS5_GROUP", "")
     where = {"cloud": "GitHub", "home": "mi PC"}.get(group, "bot")
     now = madrid_now()
     lines = [f"🕒 **Última comprobación:** {now:%d/%m/%Y %H:%M}", ""]
     for r in results:
-        hits = [f for f in r.findings if f.available and f.price is not None and f.price <= 600]
+        hits = [f for f in r.findings if f.available and f.price is not None and f.price <= max_price]
         if not r.ok:
             lines.append(f"❌ {r.store}: no se pudo leer")
         elif hits:
@@ -788,7 +788,7 @@ def main():
     state = load_state()
     sent, _ = process(results, cfg, state, args.dry_run)
     if not only:  # las pruebas con --only no tocan el mensaje de estado
-      state["status_msg"] = upsert_discord_message(state.get("status_msg"), status_notice(results, sent), args.dry_run) or state.get("status_msg")
+      state["status_msg"] = upsert_discord_message(state.get("status_msg"), status_notice(results, sent, float(cfg["max_price"])), args.dry_run) or state.get("status_msg")
     save_state(state)
     write_summary(results, sent, cfg)
     print(f"Avisos enviados: {len(sent)}")
