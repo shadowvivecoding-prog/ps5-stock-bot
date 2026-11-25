@@ -6,8 +6,8 @@ name: Vigilar stock PS5 (mi PC)
 
 on:
   schedule:
-    # Cada 10 minutos (5 minutos desplazado respecto al de GitHub)
-    - cron: "5-59/10 * * * *"
+    # Cada ejecución se queda ~5h40m comprobando cada 10 min; el cron solo la relanza.
+    - cron: "37 * * * *"
   workflow_dispatch:
     inputs:
       only:
@@ -25,7 +25,7 @@ concurrency:
 jobs:
   check:
     runs-on: [self-hosted, Windows]
-    timeout-minutes: 25
+    timeout-minutes: 350
     defaults:
       run:
         shell: powershell
@@ -37,27 +37,33 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
 
-      - name: Comprobar stock
+      - name: Comprobar stock (cada 10 min durante ~5h40m)
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_MENTION: ${{ secrets.DISCORD_MENTION }}
           PS5_GROUP: home
           PS5_STATE_PATH: state-home.json
           PYTHONIOENCODING: utf-8
-          PLAYWRIGHT_CHANNEL: chrome   # usa el Google Chrome instalado en tu PC
+          PLAYWRIGHT_CHANNEL: chrome
         run: |
+          git config user.name "ps5-stock-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          function Save-State {
+            if (git status --porcelain state-home.json) {
+              git add state-home.json
+              git commit -q -m "Actualizar estado (PC) [skip ci]"
+              git pull -q --rebase --autostash
+              git push -q
+            }
+          }
           $only = "${{ inputs.only }}"
-          if ($only) { python check_stock.py --only $only } else { python check_stock.py }
-
-      - name: Guardar estado (para no repetir avisos)
-        if: always()
-        continue-on-error: true
-        run: |
-          if (git status --porcelain state-home.json) {
-            git config user.name "ps5-stock-bot"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add state-home.json
-            git commit -m "Actualizar estado (PC) [skip ci]"
-            git pull --rebase --autostash
-            git push
+          if ($only) { python check_stock.py --only $only; Save-State; exit 0 }
+          $end = (Get-Date).AddMinutes(340)
+          while ((Get-Date) -lt $end) {
+            $start = Get-Date
+            python check_stock.py
+            try { Save-State } catch { Write-Host "No se pudo guardar estado" }
+            $wait = 600 - ((Get-Date) - $start).TotalSeconds
+            if ($wait -lt 30) { $wait = 30 }
+            Start-Sleep -Seconds ([int]$wait)
           }
