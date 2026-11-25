@@ -2,8 +2,9 @@ name: Vigilar stock PS5 (GitHub)
 
 on:
   schedule:
-    # Cada 10 minutos, todo el día (GitHub puede retrasar algunas ejecuciones unos minutos)
-    - cron: "*/10 * * * *"
+    # GitHub se salta muchos crons cortos, así que cada ejecución se queda
+    # ~5h40m comprobando cada 10 min. El cron horario solo la relanza si muere.
+    - cron: "7 * * * *"
   workflow_dispatch:
     inputs:
       test_aviso:
@@ -25,7 +26,7 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
 
@@ -46,25 +47,35 @@ jobs:
       - name: Instalar Chromium
         run: python -m playwright install --with-deps chromium
 
-      - name: Comprobar stock
+      - name: Comprobar stock (cada 10 min durante ~5h40m)
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_MENTION: ${{ secrets.DISCORD_MENTION }}
-          # Opcional: si además quieres Telegram, crea estos dos secretos
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TEST_NOTICE: ${{ inputs.test_aviso }}
           PS5_GROUP: cloud
-        run: python check_stock.py ${{ inputs.only && format('--only {0}', inputs.only) || '' }}
-
-      - name: Guardar estado (para no repetir avisos)
-        if: ${{ always() && inputs.test_aviso != true }}
+          ONLY: ${{ inputs.only }}
         run: |
-          if [ -n "$(git status --porcelain state.json)" ]; then
-            git config user.name "ps5-stock-bot"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add state.json
-            git commit -m "Actualizar estado del vigilante [skip ci]"
-            git pull --rebase --autostash || true
-            git push
+          git config user.name "ps5-stock-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          save_state() {
+            if [ -n "$(git status --porcelain state.json)" ]; then
+              git add state.json
+              git commit -q -m "Actualizar estado del vigilante [skip ci]"
+              git pull -q --rebase --autostash || true
+              git push -q || true
+            fi
+          }
+          if [ -n "$ONLY" ] || [ "$TEST_NOTICE" = "true" ]; then
+            if [ -n "$ONLY" ]; then python check_stock.py --only "$ONLY"; else python check_stock.py; fi
+            [ "$TEST_NOTICE" = "true" ] || save_state
+            exit 0
           fi
+          end=$(( $(date +%s) + 340*60 ))
+          while [ $(date +%s) -lt $end ]; do
+            start=$(date +%s)
+            python check_stock.py || echo "Fallo en esta ronda, sigo"
+            save_state
+            sleep $(( 600 - ($(date +%s) - start) > 30 ? 600 - ($(date +%s) - start) : 30 ))
+          done
