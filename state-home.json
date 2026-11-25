@@ -1,18 +1,32 @@
 {
-  "alert_msgs": {
-    "mediamarkt": "1575142894585511937"
-  },
+  "alert_msgs": {},
   "health": {
+    "alcampo": {
+      "fails": 0,
+      "warned": false
+    },
     "aliexpress": {
       "fails": 0,
       "warned": false
     },
     "carrefour": {
-      "fails": 10,
-      "last_error": "sin resultados en https://www.carrefour.es/?query=consola%20playstation%205",
+      "fails": 11,
+      "last_error": "bloqueado en https://www.carrefour.es/gaming/ofertas-gaming/oferta-consolas-playstation-5/cat3391673/c; bloqueado: https://www.carrefour.es/consola-playstation-5-estandar-e-1tb-blanco/VC4A-31794263/p;",
       "warned": true
     },
+    "coolmod": {
+      "fails": 0,
+      "warned": false
+    },
     "eci": {
+      "fails": 0,
+      "warned": false
+    },
+    "eroski": {
+      "fails": 0,
+      "warned": false
+    },
+    "hipercor": {
       "fails": 0,
       "warned": false
     },
@@ -31,11 +45,35 @@
   },
   "heartbeat": "2026-11-25",
   "items": {
+    "aliexpress|https://es.aliexpress.com/item/1005010251252905.html": {
+      "available": true,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619415.151939,
+      "price": 793.45,
+      "title": "Consola PS5 Chassis E Digital + 2 Dualsense V3 - Version ESPAÑA"
+    },
+    "aliexpress|https://es.aliexpress.com/item/1005013193991346.html": {
+      "available": true,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619415.151939,
+      "price": 890.99,
+      "title": "Consola PS5 Digital Bundle Edición Limitada Marvel Lobezno Amarillo de Combate - OFICIAL"
+    },
+    "coolmod|https://www.coolmod.com/sony-playstation-5-pro/": {
+      "available": true,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619415.151939,
+      "price": 2053.95,
+      "title": "Consola Sony PlayStation 5 Pro"
+    },
     "eci|https://www.elcorteingles.es/videojuegos/A200069098-consola-playstation-5-chasis-e-1tb/": {
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795613731.8418427,
+      "last_seen": 1795619415.151939,
       "price": 649.9,
       "title": "Consola PlayStation 5, chasis E, 1TB"
     },
@@ -43,7 +81,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795613731.8418427,
+      "last_seen": 1795619415.151939,
       "price": 599.9,
       "title": "Consola PlayStation 5 Digital"
     },
@@ -51,7 +89,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795613731.8418427,
+      "last_seen": 1795619415.151939,
       "price": 699.9,
       "title": "PlayStation 5 + 2 mandos DualSense"
     },
@@ -59,7 +97,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795613731.8418427,
+      "last_seen": 1795619415.151939,
       "price": 649.9,
       "title": "PlayStation 5 digital + 2 mandos DualSense"
     },
@@ -67,7 +105,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795613731.8418427,
+      "last_seen": 1795619415.151939,
       "price": 749.9,
       "title": "PACK PlayStation 5 + mando inalámbrico + EA Sports FC27"
     },
@@ -75,15 +113,71 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795613731.8418427,
+      "last_seen": 1795619415.151939,
       "price": 704.8,
       "title": "PACK PlayStation 5 + Marvel Lobezno PS5"
+    },
+    "eroski|https://supermercado.eroski.es/es/productdetail/mp103205-consola-sony-interactive-entertainment-playstation-5-1000gb-negro/": {
+      "available": true,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619415.151939,
+      "price": 2342.84,
+      "title": "Consola SONY INTERACTIVE ENTERTAINMENT PlayStation 5 1000GB Negro"
+    },
+    "eroski|https://supermercado.eroski.es/es/productdetail/mp98519-consola-sony-interactive-entertainment-playstation-5-pro-2000gb-negro/": {
+      "available": true,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619415.151939,
+      "price": 2071.69,
+      "title": "Consola SONY INTERACTIVE ENTERTAINMENT PlayStation 5 Pro 2000GB Negro"
+    },
+    "hipercor|https://www.hipercor.es/videojuegos/A200069098-consola-playstation-5-chasis-e-1tb/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619415.151939,
+      "price": 649.9,
+      "title": "Consola PlayStation 5, chasis E, 1TB"
+    },
+    "hipercor|https://www.hipercor.es/videojuegos/A200069099-consola-playstation-5-digital/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619415.151939,
+      "price": 599.9,
+      "title": "Consola PlayStation 5 Digital"
+    },
+    "hipercor|https://www.hipercor.es/videojuegos/A200225262-playstation-5-2-mandos-dualsense/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619415.151939,
+      "price": 699.9,
+      "title": "PlayStation 5 + 2 mandos DualSense"
+    },
+    "hipercor|https://www.hipercor.es/videojuegos/A200225263-playstation-5-digital-2-mandos-dualsense/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619415.151939,
+      "price": 649.9,
+      "title": "PlayStation 5 digital + 2 mandos DualSense"
+    },
+    "hipercor|https://www.hipercor.es/videojuegos/A201411067-pack-consola-playstation-5-saros/": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619415.151939,
+      "price": 689.8,
+      "title": "PACK Consola PlayStation 5 + Saros"
     },
     "mediamarkt|https://www.mediamarkt.es/es/product/_consola-ps5-sony-1000050116-825-gb-bicolor-170016284.html": {
       "available": true,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795613731.8418427,
+      "last_seen": 1795619415.151939,
       "price": 1366.36,
       "title": "Consola PS5 - SONY 1000050116, 825 GB, Bicolor"
     },
@@ -91,7 +185,7 @@
       "available": true,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795613731.8418427,
+      "last_seen": 1795619415.151939,
       "price": 1821.31,
       "title": "Consola PS5 - PLAYSTATION PlayStation 5 (Chasis E) 1TB, 1 TB, White"
     },
@@ -115,7 +209,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795606930.6605177,
+      "last_seen": 1795619415.151939,
       "price": 649.99,
       "title": "Edición Digital PlayStation®5 825 GB - Pack de dos mandos inalámbricos DualSense®"
     },
@@ -123,7 +217,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795613731.8418427,
+      "last_seen": 1795619415.151939,
       "price": 499.99,
       "title": "Pack de Consola PlayStation®5 Edición Digital de 825 GB - EA SPORTS FC™ 26"
     },
@@ -139,7 +233,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795613731.8418427,
+      "last_seen": 1795619415.151939,
       "price": 649.99,
       "title": "Consola PlayStation®5 Edición Digital 825 GB: paquete de edición limitada Amarillo de Combate de Marvel: Lobezno"
     }
