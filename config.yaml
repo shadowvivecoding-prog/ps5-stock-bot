@@ -116,9 +116,38 @@ stores:
   - id: carrefour
     group: home   # bloquea a GitHub: se revisa desde tu PC
     name: Carrefour
-    mode: cards
-    url: https://www.carrefour.es/?query=consola%20playstation%205
-    wait_s: 12
+    mode: product
+    # El buscador de Carrefour no carga en el bot; sus páginas de categoría sí tienen enlaces normales
+    discover:
+      - https://www.carrefour.es/gaming/consolas-ps5/F-13riiZ1pt4/c
+      - https://www.carrefour.es/gaming/ofertas-gaming/oferta-consolas-playstation-5/cat3391673/c
+    link_pattern: 'carrefour\.es/[a-z0-9-]+/[A-Z0-9]+-\d+/p$'
+    wait_s: 5
+
+  - id: hipercor
+    group: home
+    name: Hipercor
+    mode: product
+    discover:
+      - https://www.hipercor.es/videojuegos/ps5/consolas/
+    link_pattern: 'hipercor\.es/videojuegos/A\d+-'
+
+  - id: eroski
+    group: home
+    name: Eroski
+    mode: product
+    discover:
+      - https://supermercado.eroski.es/es/search/results/?q=consola%20ps5
+    link_pattern: 'eroski\.es/es/productdetail/'
+
+  - id: coolmod
+    group: home
+    name: Coolmod
+    mode: product
+    discover:
+      - https://www.coolmod.com/playstation-5/
+      - https://www.coolmod.com/gamers-consolas-consolas/
+    link_pattern: '^https://www\.coolmod\.com/(sony-)?(consola|playstation|ps5)[a-z0-9-]*/?$'
 
   - id: aliexpress
     group: home   # bloquea a GitHub: se revisa desde tu PC
