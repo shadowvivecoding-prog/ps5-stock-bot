@@ -140,6 +140,16 @@ stores:
       - https://supermercado.eroski.es/es/search/results/?q=consola%20ps5
     link_pattern: 'eroski\.es/es/productdetail/'
 
+  - id: iokool
+    group: cloud
+    name: iokool
+    mode: product
+    urls:
+      - https://iokool.com/sony-consola-ps5-digital-825gb-cfi-2116-slim-chasis-e-oficial-ps5
+    discover:
+      - https://iokool.com/buscar?controller=search&s=consola+ps5
+    link_pattern: '^https://iokool\.com/[a-z0-9-]*(ps5|playstation-5)[a-z0-9-]*$'
+
   - id: coolmod
     group: home
     name: Coolmod
