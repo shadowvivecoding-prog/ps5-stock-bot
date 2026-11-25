@@ -9,6 +9,14 @@
       "fails": 0,
       "warned": false
     },
+    "amazon_de": {
+      "fails": 0,
+      "warned": false
+    },
+    "amazon_fr": {
+      "fails": 0,
+      "warned": false
+    },
     "carrefour": {
       "fails": 11,
       "last_error": "bloqueado en https://www.carrefour.es/gaming/ofertas-gaming/oferta-consolas-playstation-5/cat3391673/c; bloqueado: https://www.carrefour.es/consola-playstation-5-estandar-e-1tb-blanco/VC4A-31794263/p;",
@@ -60,6 +68,38 @@
       "last_seen": 1795619415.151939,
       "price": 890.99,
       "title": "Consola PS5 Digital Bundle Edición Limitada Marvel Lobezno Amarillo de Combate - OFICIAL"
+    },
+    "amazon_de|https://www.amazon.de/dp/B0CLT54ZNZ": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619557.4760199,
+      "price": null,
+      "title": "Playstation®5 Standard Konsole (Slim)"
+    },
+    "amazon_fr|https://www.amazon.fr/dp/B08LM3KW18": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619557.4760199,
+      "price": null,
+      "title": "Console Sony PlayStation 5 Edition Digital"
+    },
+    "amazon_fr|https://www.amazon.fr/dp/B0B5DM6254": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619557.4760199,
+      "price": null,
+      "title": "Console Sony PlayStation 5 Edition Digital avec Horizon Forbidden West EU"
+    },
+    "amazon_fr|https://www.amazon.fr/dp/B0BKX48NZ9": {
+      "available": false,
+      "hit": false,
+      "last_alert": 0,
+      "last_seen": 1795619557.4760199,
+      "price": null,
+      "title": "PS5 Console standard Sony PlayStation (avec lecteur) inclus 2x manette Dualsense compatibles pour PS5"
     },
     "coolmod|https://www.coolmod.com/sony-playstation-5-pro/": {
       "available": true,
