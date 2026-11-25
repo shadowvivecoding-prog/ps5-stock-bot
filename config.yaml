@@ -159,6 +159,7 @@ stores:
     note: 'Precio sin cupones; con cupón puede bajar más. Comprueba que el vendedor sea la tienda oficial o una tienda conocida.'
 
   - id: amazon_fr
+    group: home   # desde GitHub no devuelve resultados
     name: Amazon Francia
     mode: product
     discover:
@@ -175,6 +176,7 @@ stores:
     note: 'Amazon Italia: comprueba que envía a España antes de comprar.'
 
   - id: amazon_de
+    group: home   # desde GitHub no devuelve resultados
     name: Amazon Alemania
     mode: product
     discover:
