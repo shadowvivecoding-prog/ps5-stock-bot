@@ -158,6 +158,45 @@ stores:
     wait_s: 7
     note: 'Precio sin cupones; con cupón puede bajar más. Comprueba que el vendedor sea la tienda oficial o una tienda conocida.'
 
+  - id: amazon_fr
+    name: Amazon Francia
+    mode: product
+    discover:
+      - https://www.amazon.fr/s?k=console+playstation+5&i=videogames
+    link_pattern: 'amazon\.fr/.*?/?dp/[A-Z0-9]{10}'
+    note: 'Amazon Francia: comprueba que envía a España antes de comprar.'
+
+  - id: amazon_it
+    name: Amazon Italia
+    mode: product
+    discover:
+      - https://www.amazon.it/s?k=console+playstation+5&i=videogames
+    link_pattern: 'amazon\.it/.*?/?dp/[A-Z0-9]{10}'
+    note: 'Amazon Italia: comprueba que envía a España antes de comprar.'
+
+  - id: amazon_de
+    name: Amazon Alemania
+    mode: product
+    discover:
+      - https://www.amazon.de/s?k=playstation+5+konsole&i=videogames
+    link_pattern: 'amazon\.de/.*?/?dp/[A-Z0-9]{10}'
+    note: 'Amazon Alemania: comprueba que envía a España antes de comprar.'
+
+  - id: lidl
+    name: Lidl
+    mode: cards
+    url: https://www.lidl.es/q/search?q=playstation%205
+    empty_ok: true   # normalmente no tiene PS5; si aparece en el buscador, avisa
+    wait_s: 5
+
+  - id: alcampo
+    group: home
+    name: Alcampo
+    mode: cards
+    url: https://www.compraonline.alcampo.es/search?q=playstation%205
+    empty_ok: true
+    wait_s: 6
+
   - id: chollometro
     name: Chollometro
     mode: chollometro

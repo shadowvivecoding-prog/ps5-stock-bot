@@ -65,7 +65,7 @@ ACCESSORY_AFTER_RE = re.compile(
     re.I,
 )
 HARDWARE_HINT_RE = re.compile(
-    r"consola|console|slim|digital|\bpro\b|chas+is|\d+\s?(?:gb|tb)\b|mandos?\b|dualsense|lector|disco|discos",
+    r"consola|console|konsole|slim|digital|\bpro\b|chas+is|\d+\s?(?:gb|tb)\b|mandos?\b|dualsense|lector|disco|discos",
     re.I,
 )
 GAME_EDITION_RE = re.compile(
@@ -101,7 +101,7 @@ def is_new_console(title: str) -> bool:
 
 
 LISTING_HINT_RE = re.compile(
-    r"consola|console|playstation\s*5\s*(?:slim|digital|pro|est[aá]ndar|standard|\d|\+|con\b|edici)|"
+    r"consola|console|konsole|playstation\s*5\s*(?:slim|digital|pro|est[aá]ndar|standard|\d|\+|con\b|edici)|"
     r"ps5\s*(?:slim|digital|pro|est[aá]ndar|standard|\+|con\b|edici)|chas+is",
     re.I,
 )
@@ -137,9 +137,9 @@ def parse_price(text) -> float | None:
 def normalize_url(url: str) -> str:
     if not url:
         return url
-    m = re.search(r"amazon\.es/(?:.*?/)?dp/([A-Z0-9]{10})", url)
+    m = re.search(r"amazon\.(es|fr|de|it)/(?:.*?/)?dp/([A-Z0-9]{10})", url)
     if m:
-        return f"https://www.amazon.es/dp/{m.group(1)}"
+        return f"https://www.amazon.{m.group(1)}/dp/{m.group(2)}"
     m = re.search(r"aliexpress\.com/item/(\d+)\.html", url)
     if m:
         return f"https://es.aliexpress.com/item/{m.group(1)}.html"
@@ -362,7 +362,10 @@ async def check_cards_store(context, store: dict, cfg: dict, sem: asyncio.Semaph
             errors.append(f"bloqueado: {url}")
             continue
         if not data.get("cards"):
-            errors.append(f"sin resultados en {url}")
+            if store.get("empty_ok"):
+                res.checked += 1  # la página se leyó; simplemente no hay ninguna PS5 a la venta
+            else:
+                errors.append(f"sin resultados en {url}")
             continue
         res.checked += len(data["cards"])
         for c in data["cards"]:
