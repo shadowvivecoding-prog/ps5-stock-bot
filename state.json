@@ -11,12 +11,17 @@
       "warned": false
     },
     "carrefour": {
-      "fails": 3,
-      "last_error": "bloqueado: https://www.carrefour.es/?query=consola%20playstation%205",
+      "fails": 4,
+      "last_error": "bloqueado en https://www.carrefour.es/gaming/consolas-ps5/F-13riiZ1pt4/c; bloqueado en https://www.carrefour.es/gaming/ofertas-gaming/oferta-consolas-playstation-5/cat3391673/c",
       "warned": false
     },
     "chollometro": {
       "fails": 0,
+      "warned": false
+    },
+    "coolmod": {
+      "fails": 1,
+      "last_error": "bloqueado en https://www.coolmod.com/playstation-5/; bloqueado en https://www.coolmod.com/gamers-consolas-consolas/",
       "warned": false
     },
     "eci": {
@@ -24,8 +29,18 @@
       "last_error": "bloqueado en https://www.elcorteingles.es/videojuegos/ps5/consolas/; bloqueado: https://www.elcorteingles.es/videojuegos/A200069099-consola-playstation-5-digital/; bloqueado: https://www.elcorteingles",
       "warned": false
     },
+    "eroski": {
+      "fails": 1,
+      "last_error": "no se encontró ninguna ficha",
+      "warned": false
+    },
     "game": {
       "fails": 0,
+      "warned": false
+    },
+    "hipercor": {
+      "fails": 1,
+      "last_error": "bloqueado en https://www.hipercor.es/videojuegos/ps5/consolas/",
       "warned": false
     },
     "mediamarkt": {
