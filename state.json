@@ -21,7 +21,7 @@
       "warned": false
     },
     "amazon_it": {
-      "fails": 9,
+      "fails": 10,
       "last_error": "no se encontró ninguna ficha",
       "warned": true
     },
@@ -59,7 +59,7 @@
       "warned": false
     },
     "iokool": {
-      "fails": 180,
+      "fails": 181,
       "last_error": "no se encontró ninguna ficha",
       "warned": true
     },
@@ -78,12 +78,12 @@
       "warned": false
     },
     "sony": {
-      "fails": 10,
+      "fails": 11,
       "last_error": "bloqueado en https://www.playstation.com/es-es/ps5/digital-edition-825-gb/product/digital-edition-825-gb-two-dualsense-bundle/; bloqueado: https://www.playstation.com/es-es/ps5/digital-edition-825-gb/",
       "warned": true
     },
     "xtralife": {
-      "fails": 10,
+      "fails": 11,
       "last_error": "no se encontró ninguna ficha",
       "warned": true
     }
@@ -134,7 +134,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792374.2533875,
+      "last_seen": 1795793553.625376,
       "price": null,
       "title": "Playstation 5 Digital Consola"
     },
@@ -142,9 +142,9 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792374.2533875,
+      "last_seen": 1795793553.625376,
       "price": null,
-      "title": "Playstation 5 Standard Consola"
+      "title": "Playstation 5 consola + EA SPORTS FC 24"
     },
     "amazon|https://www.amazon.es/dp/B0BLNQTZ3D": {
       "available": false,
@@ -166,7 +166,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792374.2533875,
+      "last_seen": 1795793553.625376,
       "price": null,
       "title": "Playstation 5 Consola Estandar Modelo Slim"
     },
@@ -174,7 +174,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792374.2533875,
+      "last_seen": 1795793553.625376,
       "price": null,
       "title": "Playstation 5 Consola Digital Modelo Slim"
     },
@@ -198,7 +198,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792374.2533875,
+      "last_seen": 1795793553.625376,
       "price": null,
       "title": "Consola Estandar Slim PlayStation5: pack Astro Bot"
     },
@@ -206,9 +206,9 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792374.2533875,
+      "last_seen": 1795793553.625376,
       "price": null,
-      "title": "Playstation Consola 5 Estandar Chassis E : Amazon.es: Videojuegos"
+      "title": "Playstation Consola 5 Estandar Chassis E"
     },
     "chollometro|consola playstation 5 chasis e digital nueva precintada": {
       "available": false,
@@ -278,7 +278,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 2699,
       "title": "Consola - Ardistel PS5 Slim Standard, 1 TB SSD, 4K, 1 mando, Chasis E, Blanco + Marvel Lobezno + Marvel’s Spider-Man 2"
     },
@@ -286,7 +286,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 399,
       "title": "Consola PS5 DIGITAL 825Gb (CFI-2116 Slim Chasis E) [Envío desde España]"
     },
@@ -294,7 +294,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 470.85,
       "title": "Consola PS5 Slim 1 TB con lector (blanca) [1 Nov 00:00]"
     },
@@ -302,7 +302,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 599,
       "title": "Consola PS5 Slim Chassis E Digital"
     },
@@ -310,7 +310,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 439,
       "title": "Consola PS5 Slim con lector Chasis E [Envío desde España] [Oferta activa a las 00:00h]"
     },
@@ -318,7 +318,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 522.7,
       "title": "Consola ps5 slim white edition (1tb) – chasis e – versión con lector – 1 mando dualsense"
     },
@@ -326,7 +326,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 479.47,
       "title": "CONSOLA PS5 SLIM WHITE EDITION (1TB) – CHASIS E – VERSIÓN CON LECTOR – 1 MANDO DUALSENSE"
     },
@@ -334,7 +334,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 607.78,
       "title": "CONSOLA PS5 SLIM WHITE EDITION (1TB) – CHASIS E – VERSIÓN CON LECTOR – 1 MANDO DUALSENSE"
     },
@@ -342,7 +342,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 555,
       "title": "Consola - Sony PS5 Slim Digital Edition, 825 GB SSD, 4K, 1 mando, Chasis E, Blanco"
     },
@@ -350,7 +350,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 699.9,
       "title": "PlayStation 5 1 TB + 2 mandos DualSense"
     },
@@ -358,7 +358,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 649.99,
       "title": "PS5 CON DOS MANDOS"
     },
@@ -366,7 +366,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 489,
       "title": "PS5 Digital - Chasis E 825GB"
     },
@@ -374,7 +374,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 512.29,
       "title": "Sony PS5 Console 825GB Digital"
     },
@@ -470,7 +470,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 749.99,
       "title": "Consola PlayStation 5 1TB 2 Mandos AON"
     },
@@ -478,7 +478,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 749.99,
       "title": "Consola PlayStation 5 Chassis D AON + Marvel: Lobezno + Marvel´s Spider-Man 2"
     },
@@ -486,7 +486,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 699.99,
       "title": "Consola PlayStation 5 Chassis D AON"
     },
@@ -494,7 +494,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 749.95,
       "title": "Consola PlayStation 5 Chassis E AON + Marvel: Lobezno + Marvel´s Spider-Man 2"
     },
@@ -502,7 +502,7 @@
       "available": false,
       "hit": false,
       "last_alert": 1795661352.2069411,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 699.95,
       "title": "Consola PlayStation 5 Chassis E AON"
     },
@@ -510,7 +510,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 699.99,
       "title": "Consola PlayStation 5 Digital 825GB 2 Mandos AON"
     },
@@ -518,7 +518,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 649.99,
       "title": "Consola PlayStation 5 Digital 825GB Fortnite Flowering Chaos AON"
     },
@@ -526,7 +526,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 649.99,
       "title": "Consola PlayStation 5 Digital Chassis C AON"
     },
@@ -534,7 +534,7 @@
       "available": false,
       "hit": false,
       "last_alert": 1795661352.2069411,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 649.99,
       "title": "Consola PlayStation 5 Digital Chassis E AON"
     },
@@ -542,7 +542,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 699.99,
       "title": "Consola PlayStation 5 Digital Lobezno AON"
     },
@@ -550,7 +550,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 699.99,
       "title": "Consola PlayStation 5 Digital + Mando AON"
     },
@@ -558,7 +558,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 699.99,
       "title": "Consola PlayStation 5 + EA Sports FC 24 Voucher AON"
     },
@@ -574,7 +574,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 699.99,
       "title": "Consola PlayStation 5 + God Of War Ragnarok AON"
     },
@@ -590,7 +590,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 949.99,
       "title": "Consola PlayStation 5 Modelo Pro Chassis D AON"
     },
@@ -598,7 +598,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 749.99,
       "title": "Consola PlayStation 5 Modelo Slim Pack Fortnite AON + Marvel: Lobezno + Marvel´s Spider-Man 2"
     },
@@ -606,7 +606,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 549.99,
       "title": "PlayStation 5 1TB Pack Voucher EA Sports FC26"
     },
@@ -614,7 +614,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 499.99,
       "title": "PlayStation 5 Edición Digital 825GB Pack Voucher EA Sports FC26"
     },
@@ -622,7 +622,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 499.99,
       "title": "PlayStation 5 Edición Digital Pack Voucher Call Of Duty Black Ops VI"
     },
@@ -630,7 +630,7 @@
       "available": false,
       "hit": false,
       "last_alert": 0,
-      "last_seen": 1795792949.9173057,
+      "last_seen": 1795793553.625376,
       "price": 799.99,
       "title": "PlayStation 5 Edición PRO 2TB Pack Voucher EA Sports FC26"
     },
